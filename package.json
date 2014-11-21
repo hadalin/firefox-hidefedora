@@ -6,12 +6,10 @@
   "author": "Hadalin",
   "homepage": "http://www.github.com/hadalin/firefox-hidefedora",
   "license": "MIT",
-  "version": "0.1",
+  "version": "0.2",
   "icon": "icons/icon48.png",
   "permissions": {
  	"cross-domain-content": [
-    	"http://www.youtube.com",
-    	"https://www.youtube.com",
     	"http://apis.google.com",
     	"https://apis.google.com",
     	"http://plus.googleapis.com",
