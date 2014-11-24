@@ -6,7 +6,7 @@
   "author": "Hadalin",
   "homepage": "http://www.github.com/hadalin/firefox-hidefedora",
   "license": "MIT",
-  "version": "0.2",
+  "version": "0.3",
   "icon": "icons/icon48.png",
   "permissions": {
  	"cross-domain-content": [
