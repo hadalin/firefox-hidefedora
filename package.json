@@ -6,7 +6,7 @@
   "author": "Hadalin",
   "homepage": "http://www.github.com/hadalin/firefox-hidefedora",
   "license": "MIT",
-  "version": "0.3",
+  "version": "1.0",
   "icon": "icons/icon48.png",
   "permissions": {
  	"cross-domain-content": [
@@ -14,8 +14,7 @@
     	"https://apis.google.com",
     	"http://plus.googleapis.com",
     	"https://plus.googleapis.com",
-    	"http://raw.githubusercontent.com/hadalin",
-    	"https://raw.githubusercontent.com/hadalin"
+      "https://jhvisser.com/hidefedora"
     ]
   }
 }
