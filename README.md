@@ -1,6 +1,4 @@
-Firefox extension that removes fedora youtube commenters.
-
-You can submit fedora profiles here https://jhvisser.com/hidefedora/
+**Firefox extension that removes fedora youtube commenters.**
 
 Addon available at [https://addons.mozilla.org/en-US/firefox/addon/hide-fedora/](https://addons.mozilla.org/en-US/firefox/addon/hide-fedora/)
 
