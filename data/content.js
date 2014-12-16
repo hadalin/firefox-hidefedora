@@ -1,30 +1,24 @@
-var resource = null;
-
-var endsWith = function(str, suffix) {
-	return str.indexOf(suffix, str.length - suffix.length) !== -1;
-};
+var bannedProfiles = self.options.bannedProfiles;
 
 var removeFedora = function(outerSelector, innerSelector) {
 	$(outerSelector).each(function(index, element) {
-		var href = $(element).find(innerSelector).attr("href");
+		var el = $(element),
+			profileId = el.find('[oid]').first().attr('oid');
 
-		if(typeof _.find(resource.fedoras, function(fedora) { 
-			return endsWith(href, fedora);
-		}) !== "undefined") {
+		if(_.contains(bannedProfiles, profileId)) {
 			$(this).remove();
 		}
 	});
 };
 
 var execute = function() {
-	if(resource !== null) {
-		removeFedora(".Yp.yt.Xa", ".ve.oba.HPa > a");
-		removeFedora(".Ik.Wv", ".fR > a");
-	}
+	removeFedora(".Yp.yt.Xa", ".ve.oba.HPa > a");
+	removeFedora(".Ik.Wv", ".fR > a");
 };
 
 $.getJSON("https://jhvisser.com/hidefedora/getJSON.php", function(res) {
-	resource = res;
+	bannedProfiles = res.fedoras;
+	self.port.emit('msg', { bannedProfiles: bannedProfiles });
 });
 
 

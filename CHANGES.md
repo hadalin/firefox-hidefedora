@@ -3,6 +3,8 @@ Changes
 
 List of changes with the latest at the top:
 
+  * v1.1
+    * Save banned profiles list locally in case source server is not reachable.
   * v1.0
     * Fetch fedora list from an outside source.
   * v0.3
