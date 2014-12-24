@@ -3,6 +3,8 @@ Changes
 
 List of changes with the latest at the top:
 
+  * v1.3
+    * Added report button.
   * v1.2
     * Version bump because Mozilla team said so.
   * v1.1

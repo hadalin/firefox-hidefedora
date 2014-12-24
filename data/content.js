@@ -1,4 +1,9 @@
-var bannedProfiles = self.options.bannedProfiles;
+var bannedProfiles = self.options.bannedProfiles,
+	showReportButton = true;
+
+self.port.on("prefsChange", function(payload) {
+	showReportButton = payload.showReportButton;
+});
 
 
 var getParentUrl = function() {
@@ -50,7 +55,7 @@ var removeFedora = function(outerSelector, innerSelector) {
 			$(this).remove();
 		}
 		else {
-			if(!thisEl.hasClass("hide-fedora-tagged")) {
+			if(showReportButton && !thisEl.hasClass("hide-fedora-tagged")) {
 				thisEl.addClass("hide-fedora-tagged");
 				thisEl
 					.find('.RN.f8b')
@@ -73,7 +78,7 @@ var execute = function() {
 
 $.getJSON("https://jhvisser.com/hidefedora/getJSON.php", function(res) {
 	bannedProfiles = res.fedoras;
-	self.port.emit('msg', { bannedProfiles: bannedProfiles });
+	self.port.emit('bannedProfilesChange', { bannedProfiles: bannedProfiles });
 });
 
 
