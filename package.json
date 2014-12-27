@@ -6,7 +6,7 @@
   "author": "Hadalin",
   "homepage": "http://hidefedora.hadal.in",
   "license": "MIT",
-  "version": "1.3",
+  "version": "1.4",
   "icon": "icons/icon48.png",
   "permissions": {
  	"cross-domain-content": [
@@ -18,9 +18,14 @@
     ]
   },
   "preferences": [{
-      "name": "showReportButton",
-      "title": "Show Report button",
-      "type": "bool",
-      "value": true
+    "name": "showReportButton",
+    "title": "Show Report button",
+    "type": "bool",
+    "value": true
+  },{
+    "type": "string",
+    "name": "bannedWords",
+    "value": "",
+    "title": "Words and phrases that will get the comment removed delimited by ; (semicolon) e.g. armie; m'lady; hide fedora" 
   }]
 }

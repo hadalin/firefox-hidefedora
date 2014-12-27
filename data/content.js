@@ -1,8 +1,16 @@
 var bannedProfiles = self.options.bannedProfiles,
-	showReportButton = true;
+	showReportButton = true,
+	bannedWords = [];
+
 
 self.port.on("prefsChange", function(payload) {
-	showReportButton = payload.showReportButton;
+	if(typeof payload.showReportButton !== "undefined") {
+		showReportButton = payload.showReportButton;
+	}
+	if(typeof payload.bannedWords !== "undefined") {
+		bannedWords = _.filter(_.map(payload.bannedWords.split(';'),
+			function(word) { return word.trim(); }), function(word) { return word !== ""; });
+	}
 });
 
 
@@ -51,7 +59,11 @@ var removeFedora = function(outerSelector, innerSelector) {
 			comment = el.find('div.Ct').first().text(),
 			thisEl = $(this);
 
-		if(_.contains(bannedProfiles, profileId)) {
+		if(_.contains(bannedProfiles, profileId) ||
+			_.some(bannedWords, function(word) {
+				return comment.toLowerCase().indexOf(word.toLowerCase()) > -1; 
+			})) {
+
 			$(this).remove();
 		}
 		else {

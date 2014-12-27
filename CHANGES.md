@@ -3,6 +3,8 @@ Changes
 
 List of changes with the latest at the top:
 
+  * v1.4
+    * Added option to hide words and prases.
   * v1.3
     * Added report button.
   * v1.2
