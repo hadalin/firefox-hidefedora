@@ -3,6 +3,8 @@ Changes
 
 List of changes with the latest at the top:
 
+  * v1.5
+    * Changed report button text and escaping youtube URL.
   * v1.4
     * Added option to hide words and prases.
   * v1.3
