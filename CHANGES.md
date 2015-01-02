@@ -3,6 +3,9 @@ Changes
 
 List of changes with the latest at the top:
 
+  * v1.6
+    * Added confirmation when submitting a report.
+    * Changed report button layout.
   * v1.5
     * Changed report button text and escaping youtube URL.
   * v1.4
