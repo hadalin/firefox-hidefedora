@@ -1,7 +1,16 @@
-var bannedProfiles = self.options.bannedProfiles,
+var TIME_PERIOD_CHECK_HOURS = 3,
+	JSON_URL = 'https://jhvisser.com/hidefedora/getJSON.php',
+	bannedProfiles = self.options.bannedProfiles,
+	lastJSONUpdate = self.options.lastJSONUpdate,
 	showReportButton = true,
 	bannedWords = [];
 
+
+self.port.on("bannedProfiles", function(payload) {
+	if(typeof payload.bannedProfiles !== "undefined") {
+		bannedProfiles = payload.bannedProfiles;
+	}
+});
 
 self.port.on("prefsChange", function(payload) {
 	if(typeof payload.showReportButton !== "undefined") {
@@ -88,9 +97,24 @@ var execute = function() {
 	removeFedora(".Ik.Wv", ".fR > a");
 };
 
-$.getJSON("https://jhvisser.com/hidefedora/getJSON.php", function(res) {
-	bannedProfiles = res.fedoras;
-	self.port.emit('bannedProfilesChange', { bannedProfiles: bannedProfiles });
+var fetchJSON = function(dateString) {
+	$.getJSON(JSON_URL, function(res) {
+		bannedProfiles = res.fedoras;
+		lastJSONUpdate = dateString;
+		self.port.emit('bannedProfilesChange', { bannedProfiles: bannedProfiles });
+		self.port.emit('lastJSONUpdateChange', { lastJSONUpdate: dateString });
+	});
+};
+
+self.port.on("lastJSONUpdate", function(payload) {
+	if(typeof payload.lastJSONUpdate !== "undefined") {
+		lastJSONUpdate = payload.lastJSONUpdate;
+
+		var now = moment();
+		if(moment(lastJSONUpdate).add(TIME_PERIOD_CHECK_HOURS, 'hours').isBefore(now)) {
+			fetchJSON(now.toISOString());
+		}
+	}
 });
 
 

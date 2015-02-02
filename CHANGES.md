@@ -3,6 +3,8 @@ Changes
 
 List of changes with the latest at the top:
 
+  * v1.7
+    * Fetching JSON every couple of hours to reduce server load.
   * v1.6
     * Added confirmation when submitting a report.
     * Changed report button layout.

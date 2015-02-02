@@ -6,7 +6,7 @@
   "author": "Hadalin",
   "homepage": "http://hidefedora.hadal.in",
   "license": "MIT",
-  "version": "1.6",
+  "version": "1.7",
   "icon": "icons/icon48.png",
   "permissions": {
  	"cross-domain-content": [
