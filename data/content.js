@@ -1,5 +1,5 @@
 var TIME_PERIOD_CHECK_HOURS = 3,
-	JSON_URL = 'https://jhvisser.com/hidefedora/getJSON.php',
+	JSON_URL = 'https://jhvisser.com/hidefedora/reports/profiles.json',
 	bannedProfiles = self.options.bannedProfiles,
 	lastJSONUpdate = self.options.lastJSONUpdate,
 	showReportButton = true,
@@ -36,7 +36,7 @@ var getParentUrl = function() {
 
 var submitReport = function(profileId, comment) {
 	$.ajax({
-		url: 'https://jhvisser.com/hidefedora/html/submit/submit.php',
+		url: 'https://jhvisser.com/hidefedora/reports',
 		type: 'POST',
 		data: {
 			submit: 1,
