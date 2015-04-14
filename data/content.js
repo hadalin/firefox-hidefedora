@@ -1,4 +1,4 @@
-var TIME_PERIOD_CHECK_HOURS = 3,
+var TIME_PERIOD_CHECK_HOURS = 1,
 	JSON_URL = 'https://jhvisser.com/hidefedora/reports/profiles.json',
 	bannedProfiles = self.options.bannedProfiles,
 	lastJSONUpdate = self.options.lastJSONUpdate,
@@ -23,17 +23,6 @@ self.port.on("prefsChange", function(payload) {
 });
 
 
-var getParentUrl = function() {
-	var isInIFrame = (parent !== window),
-        parentUrl = null;
-
-    if(isInIFrame) {
-        parentUrl = _.escape(document.referrer);
-    }
-
-    return parentUrl;
-};
-
 var submitReport = function(profileId, comment) {
 	$.ajax({
 		url: 'https://jhvisser.com/hidefedora/reports',
@@ -42,7 +31,7 @@ var submitReport = function(profileId, comment) {
 			submit: 1,
 			profileUrl: profileId,
 			comment: comment,
-			youtubeUrl: getParentUrl()
+			youtubeUrl: window.location.href
 		}
 	});
 };
@@ -63,11 +52,11 @@ var onReportClick = function() {
 	}
 };
 
-var removeFedora = function(outerSelector, innerSelector) {
+var removeFedora = function(outerSelector) {
 	$(outerSelector).each(function(index, element) {
 		var el = $(element),
-			profileId = el.find('[oid]').first().attr('oid'),
-			comment = el.find('div.Ct').first().text(),
+			profileId = el.attr('data-aid'),
+			comment = el.find('.comment-text-content').first().text(),
 			thisEl = $(this);
 
 		if(_.contains(bannedProfiles, profileId) ||
@@ -75,12 +64,12 @@ var removeFedora = function(outerSelector, innerSelector) {
 				return comment.toLowerCase().indexOf(word.toLowerCase()) > -1; 
 			})) {
 
-			$(this).remove();
+			thisEl.parent().remove();
 		}
 		else if(showReportButton && !thisEl.hasClass("hide-fedora-tagged")) {
 			thisEl.addClass("hide-fedora-tagged");
 			thisEl
-				.find('.RN.f8b')
+				.find('.footer-button-bar')
 				.first()
 				.after('<button type="button" class="hide-fedora-report-btn">HF</button>');
 
@@ -93,8 +82,7 @@ var removeFedora = function(outerSelector, innerSelector) {
 };
 
 var execute = function() {
-	removeFedora(".Yp.yt.Xa", ".ve.oba.HPa > a");
-	removeFedora(".Ik.Wv", ".fR > a");
+	removeFedora(".comment-item");
 };
 
 var fetchJSON = function(dateString) {
@@ -120,7 +108,7 @@ self.port.on("lastJSONUpdate", function(payload) {
 
 $(function() {
 
-	var target = document.querySelector('.yJa');
+	var target = document.querySelector('#watch-discussion');
 	 
 	if(target !== null) {
 

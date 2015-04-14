@@ -6,14 +6,12 @@
   "author": "Hadalin",
   "homepage": "http://hidefedora.hadal.in",
   "license": "MIT",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "icon": "icons/icon48.png",
   "permissions": {
  	"cross-domain-content": [
-    	"http://apis.google.com",
-    	"https://apis.google.com",
-    	"http://plus.googleapis.com",
-    	"https://plus.googleapis.com",
+    	"http://www.youtube.com",
+    	"https://www.youtube.com",
       "https://jhvisser.com/hidefedora"
     ]
   },
