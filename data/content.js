@@ -64,7 +64,12 @@ var removeFedora = function(outerSelector) {
 				return comment.toLowerCase().indexOf(word.toLowerCase()) > -1; 
 			})) {
 
-			thisEl.parent().remove();
+			if(thisEl.hasClass('reply')) {
+				thisEl.remove();
+			}
+			else {
+				thisEl.closest('.comment-entry').remove();
+			}
 		}
 		else if(showReportButton && !thisEl.hasClass("hide-fedora-tagged")) {
 			thisEl.addClass("hide-fedora-tagged");

@@ -3,6 +3,8 @@ Changes
 
 List of changes with the latest at the top:
 
+  * v1.7.3
+    * Bugfix: replies where not removed correctly.
   * v1.7.2
     * Update due to YouTube HTML structure changes.
   * v1.7.1
