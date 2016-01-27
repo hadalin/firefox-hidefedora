@@ -6,7 +6,7 @@
   "author": "Hadalin",
   "homepage": "http://hidefedora.hadalin.me",
   "license": "MIT",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "icon": "icons/icon48.png",
   "main": "lib/main.js",
   "permissions": {
