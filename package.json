@@ -4,9 +4,9 @@
   "id": "jid1-tg9TKUYM47PZpg",
   "description": "Removes fedora youtube commenters.",
   "author": "Hadalin",
-  "homepage": "http://hidefedora.hadal.in",
+  "homepage": "http://hidefedora.hadalin.me",
   "license": "MIT",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "icon": "icons/icon48.png",
   "permissions": {
  	"cross-domain-content": [
