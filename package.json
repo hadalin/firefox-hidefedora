@@ -6,7 +6,7 @@
   "author": "Hadalin",
   "homepage": "http://hidefedora.hadalin.me",
   "license": "MIT",
-  "version": "1.7.5",
+  "version": "1.8.0",
   "icon": "icons/icon48.png",
   "main": "lib/main.js",
   "permissions": {
@@ -25,6 +25,6 @@
     "type": "string",
     "name": "bannedWords",
     "value": "",
-    "title": "Words and phrases that will get the comment removed delimited by ; (semicolon) e.g. armie; m'lady; hide fedora" 
+    "title": "Words and phrases that will get the comment removed delimited by ; (semicolon) e.g. armie; m'lady; hide fedora"
   }]
 }

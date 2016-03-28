@@ -55,27 +55,29 @@ var onReportClick = function() {
 var removeFedora = function(outerSelector) {
 	$(outerSelector).each(function(index, element) {
 		var el = $(element),
-			profileId = el.attr('data-aid'),
-			comment = el.find('.comment-text-content').first().text(),
+			profileId = el.attr('data-author-id'),
+			comment = el.find('.comment-renderer-text-content').first().text(),
 			thisEl = $(this);
 
 		if(_.contains(bannedProfiles, profileId) ||
 			_.some(bannedWords, function(word) {
-				return comment.toLowerCase().indexOf(word.toLowerCase()) > -1; 
+				return comment.toLowerCase().indexOf(_.unescape(word.toLowerCase())) > -1;
 			})) {
 
-			if(thisEl.hasClass('reply')) {
-				thisEl.remove();
+			if(thisEl.parent().hasClass('comment-thread-renderer')) {
+				thisEl.parent().remove();
 			}
 			else {
-				thisEl.closest('.comment-entry').remove();
+				thisEl.remove();
 			}
 		}
 		else if(showReportButton && !thisEl.hasClass("hide-fedora-tagged")) {
 			thisEl.addClass("hide-fedora-tagged");
 			thisEl
-				.find('.footer-button-bar')
+				.find('.comment-renderer-footer')
 				.first()
+				.children()
+				.last()
 				.after('<button type="button" class="hide-fedora-report-btn">HF</button>');
 
 			thisEl.find('.hide-fedora-report-btn')
@@ -87,7 +89,7 @@ var removeFedora = function(outerSelector) {
 };
 
 var execute = function() {
-	removeFedora(".comment-item");
+	removeFedora(".comment-renderer");
 };
 
 var fetchJSON = function(dateString) {
@@ -114,7 +116,7 @@ self.port.on("lastJSONUpdate", function(payload) {
 $(function() {
 
 	var target = document.querySelector('#watch-discussion');
-	 
+
 	if(target !== null) {
 
 		// Set MutationObserver
@@ -124,7 +126,7 @@ $(function() {
 		});
 
 		var config = { childList: true, subtree: true };
-		 
+
 		observer.observe(target, config);
 
 		// Execute removal a couple of times before MutationObserver kicks in
@@ -133,10 +135,10 @@ $(function() {
 			execute();
 
 			counter++;
-			if(counter === 8) {
+			if(counter === 24) {
 				clearInterval(interval);
 			}
-		}, 1000);
+		}, 250);
 	}
 
 });
